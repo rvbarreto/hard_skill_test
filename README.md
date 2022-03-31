@@ -1,7 +1,7 @@
 # Hard skill test | Data Engineer
 
 ## Description and Objectives
-The assignment provides data concerning sensors and equipments on a FPSO vessel. The objective is to elaborate a script to handle the data in order to answer the following questions:
+This assignment provides data concerning sensors and equipments on a FPSO vessel. The objective is to elaborate a script to handle the data in order to answer the following questions:
 
 1. Total equipment failures that happened?
 2. Which equipment code had most failures?
@@ -75,7 +75,7 @@ Given the data and the objective, the solution will require the following steps:
 4. Group data by *date* and *equipment* in order to isolate each event. (At this point, it should be possible to answer questions 1 and 2)
 5. Group data by equipment group. (Information should be enough to answer question 3)
 
-In order to choose the framework for a task, I usually make a brief evaluation regarding:
+In order to choose a framework for a task, I usually make a brief evaluation regarding:
 - Data size and structure,
 - Objectives (Data comprehension or an answer to an isolated question),
 - Preferred framework of peers, and
@@ -83,7 +83,7 @@ In order to choose the framework for a task, I usually make a brief evaluation r
 
 among other factors.
 
-In the context of this assignment, I have provided a solution using **Spark** as it has been described as a desired skill for the position. **Spark** would also have been my framework of choice if these same questions were to be answered from big data, or in a project where scale is a concern. However, for an isolate task - like this assignment - with an small amount of data and aimed in answering just a few questions, I would also consider writing a simpler script using **Pandas**.
+In the context of this assignment, I have provided a solution using **Spark** as it has been described as a desired skill for the position. **Spark** would also have been my framework of choice if these same questions were to be answered from big data, or in a project where scale is a concern. However, for an isolate task - like this assignment - with an small amount of data and aimed in answering just a few questions, I would have also considered writing a simpler script using **Pandas**.
 
 ## Solution Script - Pyspark
 
@@ -181,6 +181,6 @@ E1AD07D4
 ```
 ## Further data exploration
 
-A plot of temperature vs vibration was generated in order to look for insights , but it was verified that this data is probably random with temperature *t* with 0 < *t* < 500, and vibration *v* with -10000 < *v* <10000.
+A plot of temperature vs vibration was generated in order to look for insights, but it was verified that this data is probably random with temperature *t* with 0 < *t* < 500, and vibration *v* with -10000 < *v* <10000.
 
 ![temperature vs vibration](data.jpg)
