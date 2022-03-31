@@ -103,19 +103,17 @@ spark = SparkSession.builder \
 match = spark.read.option("header", "true") \
                   .option("delimiter", ";") \
                   .csv("equipment_sensors.csv")
-
 equip = spark.read.option("multiline", "true") \
                   .json("equipment.json")
-
 fail = spark.read.text("equipment_failure_sensors.log")
 
-# remove descripte texts from failure data and clear deleted fields
+# remove descriptive texts from failure data and clear deleted fields
 fail = fail.withColumn('value', regexp_replace(
     'value', "[A-Za-z\[\]\(\),]:*", "")) \
     .withColumn('value', regexp_replace(
         'value', "\t+", "\t"))
 
-# enforce failure data schema
+# enforce data schema to failure data
 fail_schema = {
     'datetime': [0, TimestampType()],
     'sensor_id': [1, StringType()],
@@ -157,7 +155,6 @@ print('2) Which equipment code had most failures?')
 print(ans_2[0]['code'])
 print('3) Average amount of failures across equipment group, ordered by the number of failures in ascending order?')
 ans_3.show()
-
 ```
 ## Answers
 Executing the code outputs the desired answers:
