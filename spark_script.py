@@ -11,19 +11,17 @@ spark = SparkSession.builder \
 match = spark.read.option("header", "true") \
                   .option("delimiter", ";") \
                   .csv("equipment_sensors.csv")
-
 equip = spark.read.option("multiline", "true") \
                   .json("equipment.json")
-
 fail = spark.read.text("equipment_failure_sensors.log")
 
-# remove descripte texts from failure data and clear deleted fields
+# remove descriptive texts from failure data and clear deleted fields
 fail = fail.withColumn('value', regexp_replace(
     'value', "[A-Za-z\[\]\(\),]:*", "")) \
     .withColumn('value', regexp_replace(
         'value', "\t+", "\t"))
 
-# enforce failure data schema
+# enforce data schema to failure data
 fail_schema = {
     'datetime': [0, TimestampType()],
     'sensor_id': [1, StringType()],
