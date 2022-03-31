@@ -83,7 +83,7 @@ In order to choose a framework for a task, I usually make a brief evaluation reg
 
 among other factors.
 
-In the context of this assignment, I have provided a solution using **Spark** as it has been described as a desired skill for the position. **Spark** would also have been my framework of choice if these same questions were to be answered from big data, or in a project where scale is a concern. However, for an isolate task - like this assignment - with an small amount of data and aimed in answering just a few questions, I would have also considered writing a simpler script using **Pandas**.
+In the context of this assignment, I have provided a solution using **Spark**, as it has been described as a desired skill for the position. **Spark** would also have been my framework of choice if these same questions were to be answered from big data - or in a project where scale is a concern. However, for an isolate task - like this assignment - with an small amount of data and aimed in answering just a few questions, I would have also considered writing a simpler script using **Pandas**.
 
 ## Solution Script - Pyspark
 
