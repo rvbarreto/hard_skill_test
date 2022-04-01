@@ -1,7 +1,7 @@
 # Hard skill test | Data Engineer
 
 ## Description and Objectives
-This assignment provides data concerning sensors and equipments on a FPSO vessel. The objective is to elaborate a script to handle the data in order to answer the following questions:
+This assignment provides data concerning sensors and equipments on a FPSO vessel. The objective is to develop a roadmap to process the data in order to answer the following questions:
 
 1. Total equipment failures that happened?
 2. Which equipment code had most failures?
@@ -78,12 +78,12 @@ Given the data and the objective, the solution will require the following steps:
 In order to choose a framework for a task, I usually make a brief evaluation regarding:
 - Data size and structure,
 - Objectives (Data comprehension or an answer to an isolated question),
-- Preferred framework of peers, and
+- co-workers' preferred framework, and
 - Urgency
 
 among other factors.
 
-In the context of this assignment, I have provided a solution using **Spark**, as it has been described as a desired skill for the position. **Spark** would also have been my framework of choice if these same questions were to be answered from big data - or in a project where scale is a concern. However, for an isolate task - like this assignment - with an small amount of data and aimed in answering just a few questions, I would have also considered writing a simpler script using **Pandas**.
+In the context of this assignment, I have provided a solution using **Spark**, as it has been described as a desired skill for the position. **Spark** would also have been my framework of choice if these same questions were to be answered from big data - or in a project where scale is a concern. However, for an isolate task - like this assignment - with a small amount of data and aimed at answering just a few questions, I would have also considered writing a simpler script using **Pandas**.
 
 ## Solution Script - Pyspark
 
@@ -113,7 +113,7 @@ fail = fail.withColumn('value', regexp_replace(
     .withColumn('value', regexp_replace(
         'value', "\t+", "\t"))
 
-# enforce data schema to failure data
+# enforce schema to failure data
 fail_schema = {
     'datetime': [0, TimestampType()],
     'sensor_id': [1, StringType()],
@@ -121,10 +121,7 @@ fail_schema = {
     'vibration': [3, FloatType()]
 }
 for k, v in fail_schema.items():
-    fail = fail \
-        .withColumn(k, split(fail['value'], "\t")
-                    .getItem(v[0])
-                    .cast(v[1]))
+    fail = fail.withColumn(k, split('value', "\t").getItem(v[0]).cast(v[1]))
 fail = fail.drop('value')
 
 # select desired period

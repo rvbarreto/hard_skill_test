@@ -21,7 +21,7 @@ fail = fail.withColumn('value', regexp_replace(
     .withColumn('value', regexp_replace(
         'value', "\t+", "\t"))
 
-# enforce data schema to failure data
+# enforce schema to failure data
 fail_schema = {
     'datetime': [0, TimestampType()],
     'sensor_id': [1, StringType()],
@@ -29,10 +29,7 @@ fail_schema = {
     'vibration': [3, FloatType()]
 }
 for k, v in fail_schema.items():
-    fail = fail \
-        .withColumn(k, split(fail['value'], "\t")
-                    .getItem(v[0])
-                    .cast(v[1]))
+    fail = fail.withColumn(k, split('value', "\t").getItem(v[0]).cast(v[1]))
 fail = fail.drop('value')
 
 # select desired period
